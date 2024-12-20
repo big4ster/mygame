@@ -58,37 +58,29 @@ def guessNumber():
     count = 0
     print('Я загадал число от 1 до 100,\nпопробуй угадай, что это за число!')
     while True:
+        count += 1
         mynumber = input('Введите ответ: ')
         if mynumber.isdigit():
             mynumber = int(mynumber)
-            mynumberpers = (mynumber / number) * 100
-            if mynumberpers != number:
-                count += 1
-            if number > mynumber:
-                if 49 < mynumberpers < 70:
-                    print('холодно')
-                elif 71 < mynumberpers < 80:
-                    print('горячее')
-                elif 80 < mynumberpers < 95:
-                    print('горячо')
-                elif 94 < mynumberpers < 100:
-                    print('вот прям горячо')
-                elif mynumberpers < 49:
-                    print('Очень холодно')
-            elif number < mynumber:
-                if number < mynumber:
-                    if 131 < mynumberpers < 149:
-                        print('холодно')
-                    elif 120 < mynumberpers < 131:
-                        print('горячее')
-                    elif 110 < mynumberpers < 121:
-                        print('горячо')
-                    elif 101 < mynumberpers < 110:
-                        print('вот прям горячо')
-                    elif mynumberpers > 149:
-                        print('Очень холодно')
-            elif mynumber == number:
+            if mynumber > 100 or mynumber < 1:
+                print('Введите число из диапазона от 1 до 100')
+                continue
+            difference = abs(number - mynumber)
+            if mynumber == number:
                 print('Поздравляю, вы угадали число!')
-                print(f' Вы справились за {count} попыток')
+                print(f'Вы справились за {count} попыток')
                 break
+
+            if 1 <= difference <= 4:
+                print('очень горячо')
+            elif 5 <= difference <= 10:
+                print('горячо')
+            elif 11 <= difference <= 20:
+                print('тепло')
+            elif 21 <= difference:
+                print('очень холодно')
+        elif mynumber == 'q':
+            break
+        else:
+            print('Ошибка! Введите число\nДля выхода отправьте \'q\'')
 #End Угадай число
